@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    traefik:
+        image: traefik:1.2
+        ports:
+            - 8080:8080
+            - 80:80
+        command: -c /etc/traefik/traefik.toml
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./traefik.toml:/etc/traefik/traefik.toml
+        restart: always
+        networks:
+            - gateway
+
+networks:
+    gateway:
+        driver: bridge
