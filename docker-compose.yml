@@ -2,14 +2,17 @@ version: '3'
 
 services:
     traefik:
-        image: traefik:1.2
+        image: traefik:2.0
         ports:
             - 8080:8080
             - 80:80
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./traefik.toml:/traefik.toml
+            - ./traefik.yml:/etc/traefik/traefik.yml
         restart: always
+        labels:
+          - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
+          - traefik.http.services.traefik.loadbalancer.server.port=8080
         networks:
             - gateway
 
