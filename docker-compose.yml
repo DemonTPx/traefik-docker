@@ -11,8 +11,8 @@ services:
             - ./traefik.yml:/etc/traefik/traefik.yml
         restart: always
         labels:
-          - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
-          - traefik.http.services.traefik.loadbalancer.server.port=8080
+            - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
+            - traefik.http.services.traefik.loadbalancer.server.port=8080
         networks:
             - web
 
